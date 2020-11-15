@@ -7,7 +7,7 @@ services:
       - SWAGGER_HOST=ose.demo.screenlyapp.com
     image: screenly/ose-dev-server:latest
     ports:
-      - 127.0.0.1:8080:8080
+      - 192.168.0.146:9090:9090
     restart: always
     mem_limit: 300M
     volumes:

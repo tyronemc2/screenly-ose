@@ -1619,7 +1619,7 @@ else:
 
     if settings['use_ssl'] or is_demo_node:
         API_URL = 'https://{}/api/swagger.json'.format(swagger_address)
-    elif LISTEN == '127.0.0.1' or swagger_address != my_ip:
+    elif LISTEN == '192.168.0.146' or swagger_address != my_ip:
         API_URL = "http://{}/api/swagger.json".format(swagger_address)
     else:
         API_URL = "http://{}:{}/api/swagger.json".format(swagger_address, PORT)
@@ -1851,7 +1851,7 @@ def splash_page():
 
         if settings['use_ssl']:
             url = 'https://{}'.format(my_ip)
-        elif LISTEN == '127.0.0.1':
+        elif LISTEN == '192.168.0.146':
             url = "http://{}".format(my_ip)
         else:
             url = "http://{}:{}".format(my_ip, PORT)

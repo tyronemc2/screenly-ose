@@ -14,10 +14,10 @@ from requests.auth import HTTPBasicAuth
 HOME = os.getenv('HOME', '/home/pi')
 
 BASE_API_SCREENLY_URL = 'https://api.screenlyapp.com'
-ASSETS_SCREENLY_OSE_API = 'http://127.0.0.1:8080/api/v1.1/assets'
+ASSETS_SCREENLY_OSE_API = 'http://192.168.0.146:9090/api/v1.1/assets'
 
 PORT_NGROK = 4040
-PORT = 8000
+PORT = 9000
 
 token = None
 ngrok_public_url = None
@@ -37,7 +37,7 @@ def start_http_ngrok_process(try_connection=100):
         if try_count >= try_connection:
             raise Exception('Failed start ngrok')
         try:
-            requests.get('http://127.0.0.1:%i' % PORT_NGROK, timeout=10)
+            requests.get('http://192.168.0.146:%i' % PORT_NGROK, timeout=10)
             break
         except requests.exceptions.ConnectionError:
             try_count += 1
@@ -51,7 +51,7 @@ def get_ngrock_public_url(try_connection=100):
     while True:
         if try_count >= try_connection:
             raise Exception('Could not take a public url ngrok')
-        response = requests.get('http://127.0.0.1:%i/api/tunnels' % PORT_NGROK, timeout=10).json()
+        response = requests.get('http://192.168.0.146:%i/api/tunnels' % PORT_NGROK, timeout=10).json()
         if response['tunnels']:
             break
         else:

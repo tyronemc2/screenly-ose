@@ -44,8 +44,8 @@ CONFIGURABLE_SETTINGS = DEFAULTS['viewer'].copy()
 CONFIGURABLE_SETTINGS['use_24_hour_clock'] = DEFAULTS['main']['use_24_hour_clock']
 CONFIGURABLE_SETTINGS['date_format'] = DEFAULTS['main']['date_format']
 
-PORT = int(getenv('PORT', 8080))
-LISTEN = getenv('LISTEN', '127.0.0.1')
+PORT = int(getenv('PORT', 9090))
+LISTEN = getenv('LISTEN', '192.168.0.146')
 
 # Initiate logging
 logging.basicConfig(level=logging.INFO,
@@ -156,7 +156,7 @@ class ZmqPublisher:
         self.context = zmq.Context()
 
         self.socket = self.context.socket(zmq.PUB)
-        self.socket.bind('tcp://127.0.0.1:10001')
+        self.socket.bind('tcp://192.168.0.146:10001')
         sleep(1)
 
     @classmethod
@@ -196,7 +196,7 @@ class ZmqCollector:
         self.context = zmq.Context()
 
         self.socket = self.context.socket(zmq.PULL)
-        self.socket.bind('tcp://127.0.0.1:5558')
+        self.socket.bind('tcp://192.168.0.146:5558')
 
         self.poller = zmq.Poller()
         self.poller.register(self.socket, zmq.POLLIN)
